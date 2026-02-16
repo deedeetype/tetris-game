@@ -96,7 +96,6 @@ export default function Tetris() {
       }
     }
 
-    // Clear full lines
     let linesCleared = 0
     for (let y = BOARD_HEIGHT - 1; y >= 0; y--) {
       if (newBoard[y].every(cell => cell !== null)) {
@@ -212,15 +211,15 @@ export default function Tetris() {
     }
 
     return displayBoard.map((row, y) => (
-      <div key={y} className="flex">
+      <div key={y} style={{ display: 'flex' }}>
         {row.map((cell, x) => (
           <div
             key={`${y}-${x}`}
-            className="border border-slate-700"
             style={{
-              width: BLOCK_SIZE,
-              height: BLOCK_SIZE,
-              backgroundColor: cell ? COLORS[cell] : '#1e293b'
+              width: `${BLOCK_SIZE}px`,
+              height: `${BLOCK_SIZE}px`,
+              backgroundColor: cell ? COLORS[cell] : '#1e293b',
+              border: '1px solid #334155'
             }}
           />
         ))}
@@ -240,9 +239,11 @@ export default function Tetris() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8">
       <h1 className="text-5xl font-bold text-white mb-8">Tetris</h1>
       
-      <div className="flex gap-8 items-start">
+      <div className="flex gap-8 items-start flex-wrap justify-center">
         <div className="bg-slate-800 p-4 rounded-lg shadow-2xl">
-          {renderBoard()}
+          <div style={{ display: 'inline-block' }}>
+            {renderBoard()}
+          </div>
         </div>
 
         <div className="bg-slate-800 p-6 rounded-lg shadow-2xl min-w-[200px]">
